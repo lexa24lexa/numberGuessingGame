@@ -1,8 +1,8 @@
 import java.util.Scanner;
-import backEnd.Utils.RandomNumberGenerator;
-import backEnd.Strategies.*;
-import backEnd.Factory.*;
-import frontEnd.ObserverPattern;
+import backend.Utils.RandomNumberGenerator;
+import backend.Strategies.*;
+import backend.Factory.*;
+import frontend.ObserverPattern;
 
 public class GameUI {
     private Scanner scanner;
