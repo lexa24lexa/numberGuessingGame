@@ -2,44 +2,47 @@ import java.util.Scanner;
 import backEnd.Utils.RandomNumberGenerator;
 import backEnd.Strategies.*;
 import backEnd.Factory.*;
-import frontEnd.ObserverPattern;
+import frontEnd.ObserverPattern.*;
 
 public class GameUI {
     private Scanner scanner;
     private int targetNumber;
-    private int attemptsLeft;
     private HintAdapter hintAdapter;
+    private GameProgress gameProgress;
 
     // Constructor
     public GameUI(int maxAttempts, int range, HintStrategy strategy) {
         scanner = new Scanner(System.in);
         RandomNumberGenerator rng = RandomNumberGenerator.getInstance();
         targetNumber = rng.generate(1, range);
-        attemptsLeft = maxAttempts;
         hintAdapter = new HintAdapter(strategy);
+
+        // Inicializa GameProgress com Observador
+        gameProgress = new GameProgress(maxAttempts);
+        gameProgress.addObserver(new ConsoleObserver());
     }
 
     // Main game loop
     public void play() {
         System.out.println("\ud83c\udfae Welcome to the Number Guessing Game!");
-        System.out.println("Try to guess the number. You have " + attemptsLeft + " attempts. Good luck!");
+        System.out.println("Try to guess the number. Good luck!");
 
-        while (attemptsLeft > 0) {
+        while (gameProgress.getAttemptsLeft() > 0) {
             System.out.print("\nEnter your guess: ");
             int guess = getUserInput();
 
-            // Check the guess
-            if (guess == targetNumber) {
-                System.out.println("\ud83c\udf89 Congratulations! You guessed the number!");
-                break;
-            } else {
-                attemptsLeft--;
+            gameProgress.makeGuess(guess, targetNumber);
+
+            if (guess != targetNumber) {
                 System.out.println(hintAdapter.getHint(guess, targetNumber));
-                System.out.println("Attempts left: " + attemptsLeft);
             }
 
-            if (attemptsLeft == 0) {
+            if (gameProgress.getAttemptsLeft() == 0) {
                 System.out.println("\ud83d\udca5 Game Over! The number was: " + targetNumber);
+            }
+
+            if (guess == targetNumber) {
+                break;
             }
         }
     }
