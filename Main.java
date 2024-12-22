@@ -1,33 +1,31 @@
-import backEnd.Factory.*;
-import backEnd.Strategies.*;
-import frontEnd.GameUI;
+package frontEnd;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+// Observer Interface
+public interface Observer {
+    void update(String message);
+}
 
-        // Select difficulty
-        System.out.println("Select Difficulty: Easy, Medium, or Hard");
-        String difficulty = scanner.nextLine();
+// Subject Class
+class Subject {
+    private List<Observer> observers = new ArrayList<>();
 
-        Game game = GameFactory.createGame(difficulty);
-        game.start();
+    // Add observer
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
 
-        // Select hint strategy
-        System.out.println("Select Hint Strategy: 1 for Higher/Lower, 2 for Hot/Cold");
-        int strategyChoice = scanner.nextInt();
-        HintStrategy strategy = strategyChoice == 1 ? new HigherLowerHint() : new HotColdHint();
+    // Remove observer
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
 
-        // Set game parameters based on difficulty
-        int maxAttempts = difficulty.equalsIgnoreCase("Easy") ? 10 :
-                difficulty.equalsIgnoreCase("Medium") ? 7 : 5;
-        int range = difficulty.equalsIgnoreCase("Easy") ? 50 :
-                difficulty.equalsIgnoreCase("Medium") ? 100 : 200;
-
-        // Start the game UI
-        GameUI gameUI = new GameUI(maxAttempts, range, strategy);
-        gameUI.play();
+    // Notify all observers
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
     }
 }
