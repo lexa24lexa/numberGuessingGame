@@ -49,3 +49,17 @@ public class EvenOddHintDecorator extends BaseHintDecorator {
         return baseHint + " " + evenOddHint;
     }
 }
+
+// Final Decorator for high/low hints
+public class HighLowHintDecorator extends BaseHintDecorator {
+    public HighLowHintDecorator(BonusHint bonusHint) {
+        super(bonusHint);
+    }
+
+    @Override
+    public String getHint(int guess, int target) {
+        String baseHint = super.getHint(guess, target);
+        String highLowHint = guess > target ? "Too high!" : "Too low!";
+        return baseHint + " " + highLowHint;
+    }
+}
