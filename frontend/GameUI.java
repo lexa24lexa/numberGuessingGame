@@ -10,7 +10,7 @@ public class GameUI {
     // Constructor
     public GameUI(int maxAttempts, int range) {
         scanner = new Scanner(System.in);
-        targetNumber = (int) (Math.random() * range) + 1; // Simple random generator
+        targetNumber = (int) (Math.random() * range) + 1;
         attemptsLeft = maxAttempts;
         gameProgress = new GameProgress(maxAttempts);
         gameProgress.addObserver(new ConsoleObserver());
