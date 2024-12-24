@@ -35,3 +35,17 @@ public class RangeHintDecorator extends BaseHintDecorator {
         return baseHint + " " + rangeHint;
     }
 }
+
+// Additional Decorator for even/odd hints
+public class EvenOddHintDecorator extends BaseHintDecorator {
+    public EvenOddHintDecorator(BonusHint bonusHint) {
+        super(bonusHint);
+    }
+
+    @Override
+    public String getHint(int guess, int target) {
+        String baseHint = super.getHint(guess, target);
+        String evenOddHint = (guess % 2 == target % 2) ? "Same parity!" : "Different parity!";
+        return baseHint + " " + evenOddHint;
+    }
+}
