@@ -14,6 +14,9 @@ made by:
 
 ### Structural Pattern: 
 1. Adapter (P):
+    Implemented in backend/Patterns/HintAdapter.java to unify interaction with different hint strategies (Higher/Lower, Hot/Cold).
+- Wraps HintStrategy implementations for consistent hint generation. 
+- Allows dynamic switching of strategies during gameplay.
 
 2. Decorator (A):
 
