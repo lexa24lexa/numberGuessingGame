@@ -19,5 +19,7 @@ made by:
 
 #### Behavioural Pattern: 
 1. Strategy (P):
+    Implemented in backend/Strategies to define interchangeable hint strategies (Higher/Lower, Hot/Cold).
+   - Encapsulates hint logic for dynamic selection and feedback in Main.java and GameUI.java.
 
 2. Observer (A):
