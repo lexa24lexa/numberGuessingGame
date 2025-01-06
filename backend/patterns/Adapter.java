@@ -1,6 +1,6 @@
-package backend.Patterns;
+package backend.patterns;
 
-import backend.Strategies.HintStrategy;
+import backend.strategies.HintStrategy;
 
 public class Adapter {
     // This class can act as an additional interface or utility for adapting strategies
