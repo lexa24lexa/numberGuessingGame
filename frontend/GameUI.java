@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import frontend.ObserverPattern.*;
+import backend.patterns.Singleton;
 
 public class GameUI {
     private Scanner scanner;
@@ -10,7 +11,8 @@ public class GameUI {
     // Constructor
     public GameUI(int maxAttempts, int range) {
         scanner = new Scanner(System.in);
-        targetNumber = (int) (Math.random() * range) + 1; // Simple random generator
+        Singleton rng = Singleton.getInstance();
+        targetNumber = rng.generate(1, range);
         attemptsLeft = maxAttempts;
         gameProgress = new GameProgress(maxAttempts);
         gameProgress.addObserver(new ConsoleObserver());
