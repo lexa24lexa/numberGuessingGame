@@ -1,3 +1,5 @@
+import backend.Factory.GameFactory;
+import frontEnd.GameUI;
 import backend.patterns.*;
 import frontend.GameUI;
 import java.util.Scanner;
