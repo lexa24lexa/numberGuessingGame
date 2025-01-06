@@ -1,21 +1,28 @@
 import java.util.Scanner;
 import frontend.ObserverPattern.*;
 import backend.patterns.Singleton;
+import backend.patterns.BonusHint;
+import backend.patterns.BaseHintDecorator;
+import backend.patterns.RangeHintDecorator;
+import backend.patterns.EvenOddHintDecorator;
+import backend.patterns.HighLowHintDecorator;
 
 public class GameUI {
     private Scanner scanner;
     private int targetNumber;
     private int attemptsLeft;
     private GameProgress gameProgress;
+    private BonusHint hintDecorator;
 
     // Constructor
-    public GameUI(int maxAttempts, int range) {
+    public GameUI(int maxAttempts, int range, BonusHint hintDecorator) {
         scanner = new Scanner(System.in);
         Singleton rng = Singleton.getInstance();
         targetNumber = rng.generate(1, range);
         attemptsLeft = maxAttempts;
         gameProgress = new GameProgress(maxAttempts);
         gameProgress.addObserver(new ConsoleObserver());
+        this.hintDecorator = hintDecorator;
     }
 
     // Main game loop
@@ -31,6 +38,7 @@ public class GameUI {
                 break;
             } else {
                 attemptsLeft--;
+                System.out.println("Hint: " + hintDecorator.getHint(guess, targetNumber));
                 System.out.println("Attempts left: " + attemptsLeft);
             }
             if (attemptsLeft == 0) {
@@ -66,8 +74,29 @@ public class GameUI {
                 difficulty.equalsIgnoreCase("Medium") ? 7 : 5;
         int range = difficulty.equalsIgnoreCase("Easy") ? 50 :
                 difficulty.equalsIgnoreCase("Medium") ? 100 : 200;
+      
+        // Select hint type
+        System.out.println("Select Hint Type: 1 for Range, 2 for Even/Odd, 3 for High/Low");
+        int hintType = scanner.nextInt();
+        BonusHint baseHint = (guess, target) -> "Basic Hint";
+        BonusHint hintDecorator;
 
-        GameUI gameUI = new GameUI(maxAttempts, range);
+        switch (hintType) {
+            case 1:
+                hintDecorator = new RangeHintDecorator(baseHint);
+                break;
+            case 2:
+                hintDecorator = new EvenOddHintDecorator(baseHint);
+                break;
+            case 3:
+                hintDecorator = new HighLowHintDecorator(baseHint);
+                break;
+            default:
+                hintDecorator = baseHint;
+                break;
+        }
+
+        GameUI gameUI = new GameUI(maxAttempts, range, hintDecorator);
         gameUI.play();
     }
 }
