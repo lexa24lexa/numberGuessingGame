@@ -27,14 +27,14 @@ public class GameUI {
 
     // Main game loop
     public void play() {
-        System.out.println("\ud83c\udfae Welcome to the Number Guessing Game!");
+        System.out.println("🎮 Welcome to the Number Guessing Game!");
         System.out.println("Try to guess the number. Good luck!");
         while (attemptsLeft > 0) {
             System.out.print("\nEnter your guess: ");
             int guess = getUserInput();
             gameProgress.makeGuess(guess, targetNumber);
             if (guess == targetNumber) {
-                System.out.println("\ud83c\udf89 Congratulations! You guessed the number!");
+                System.out.println("🎉 Congratulations! You guessed the number!");
                 break;
             } else {
                 attemptsLeft--;
@@ -42,7 +42,7 @@ public class GameUI {
                 System.out.println("Attempts left: " + attemptsLeft);
             }
             if (attemptsLeft == 0) {
-                System.out.println("\ud83d\udca5 Game Over! The number was: " + targetNumber);
+                System.out.println("💥 Game Over! The number was: " + targetNumber);
             }
         }
     }
@@ -74,7 +74,7 @@ public class GameUI {
                 difficulty.equalsIgnoreCase("Medium") ? 7 : 5;
         int range = difficulty.equalsIgnoreCase("Easy") ? 50 :
                 difficulty.equalsIgnoreCase("Medium") ? 100 : 200;
-
+      
         // Select hint type
         System.out.println("Select Hint Type: 1 for Range, 2 for Even/Odd, 3 for High/Low");
         int hintType = scanner.nextInt();
