@@ -16,6 +16,8 @@ made by:
 
 ### Structural Pattern: 
 1. Adapter (P):
+   - Adapts the HintStrategy interface to a new format (NewHintInterface) for providing hints in different input/output formats.
+   - Allows dynamic switching of hint strategies without modifying existing classes.
 
 2. Decorator (A):
 
