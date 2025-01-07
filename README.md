@@ -24,7 +24,9 @@ made by:
 1. Strategy (P):
 
 2. Observer (A):
-   Implemented in `frontend/ObserverPattern`. The **Observer** pattern dynamically tracks game progress through the `GameProgress` class, which acts as the **Subject**.
-
-- **ConsoleObserver** listens for updates and provides real-time feedback in the console.
-- Integrated into `GameUI` to track guesses, remaining attempts, and game outcomes.
+<br> Implemented in `frontend/Observer` to manage notifications about game progress and attempts left.
+- Observer interface defines a method update to handle notifications.
+- Subject class manages a list of observers and notifies them of updates.
+- GameProgress extends Subject to track attempts and notify observers about game events (correct guess, wrong guess, or game over).
+- ConsoleObserver implements Observer to display notifications in the console.
+<br><br> Used in GameUI to provide real-time updates and improve user feedback during the gameplay.
