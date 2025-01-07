@@ -16,25 +16,15 @@ public class Main {
         System.out.println("Select Difficulty: Easy, Medium, or Hard");
         String difficulty = scanner.nextLine();
 
-        // Use the factory to create a Game instance
         Game game = GameFactory.createGame(difficulty);
-        game.start(); // Outputs game-specific configuration (e.g., attempts and range)
+        game.start();
 
-        // Set parameters based on the selected difficulty
         int maxAttempts = difficulty.equalsIgnoreCase("Easy") ? 10 :
                 difficulty.equalsIgnoreCase("Medium") ? 7 : 5;
         int range = difficulty.equalsIgnoreCase("Easy") ? 50 :
                 difficulty.equalsIgnoreCase("Medium") ? 100 : 200;
 
-        // Select hint strategy
-        System.out.println("Select Hint Strategy: 1 for Higher/Lower, 2 for Hot/Cold");
-        int strategyChoice = scanner.nextInt();
-        HintStrategy strategy = strategyChoice == 1 ? new HigherLowerHint() : new HotColdHint();
-
-        // Use HintAdapter with the selected strategy
-        HintAdapter hintAdapter = new HintAdapter(strategy);
-
-        // Select decorator for bonus hints
+        // Select hint type
         System.out.println("Select Hint Type: 1 for Range, 2 for Even/Odd, 3 for High/Low");
         int hintType = scanner.nextInt();
         BonusHint baseHint = (guess, target) -> "Basic Hint";
@@ -55,10 +45,7 @@ public class Main {
                 break;
         }
 
-        // Initialize the GameUI with selected parameters
         GameUI gameUI = new GameUI(maxAttempts, range, hintDecorator);
         gameUI.play();
-
-        scanner.close();
     }
 }
