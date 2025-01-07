@@ -1,8 +1,13 @@
 package frontend;
 
-import frontend.ObserverPattern.*;
+import frontend.ConsoleObserver;
+import frontend.GameProgress;
 import backend.patterns.Singleton;
 import backend.patterns.BonusHint;
+import backend.patterns.RangeHintDecorator;
+import backend.patterns.EvenOddHintDecorator;
+import backend.patterns.HighLowHintDecorator;
+
 import java.util.Scanner;
 
 public class GameUI {
@@ -16,10 +21,10 @@ public class GameUI {
     public GameUI(int maxAttempts, int range, BonusHint hintDecorator) {
         scanner = new Scanner(System.in);
         Singleton rng = Singleton.getInstance();
-        targetNumber = rng.generate(1, range); // Uses Singleton for RNG
+        targetNumber = rng.generate(1, range);
         attemptsLeft = maxAttempts;
         gameProgress = new GameProgress(maxAttempts);
-        gameProgress.addObserver(new ConsoleObserver()); // Observer Pattern
+        gameProgress.addObserver(new ConsoleObserver());
         this.hintDecorator = hintDecorator;
     }
 
