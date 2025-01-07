@@ -1,4 +1,4 @@
-package backend.Strategies;
+package backend.strategies;
 
 public class HotColdHint implements HintStrategy {
     @Override

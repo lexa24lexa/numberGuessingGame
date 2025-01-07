@@ -1,4 +1,4 @@
-package backend.Strategies;
+package backend.strategies;
 
 public class HintAdapter {
     private HintStrategy hintStrategy;
@@ -15,6 +15,6 @@ public class HintAdapter {
 
     // Method to get a hint using the current strategy
     public String getHint(int guess, int targetNumber) {
-        return hintStrategy.provideHint(guess, targetNumber);
+        return hintStrategy.getHint(guess, targetNumber);
     }
 }
