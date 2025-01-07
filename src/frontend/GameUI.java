@@ -1,3 +1,5 @@
+package frontend;
+
 import frontend.ObserverPattern.*;
 import backend.patterns.Singleton;
 import backend.patterns.BonusHint;

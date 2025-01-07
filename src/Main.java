@@ -1,3 +1,5 @@
+package src;
+
 import backend.patterns.*;
 import backend.strategies.*;
 import backend.factory.GameFactory;
