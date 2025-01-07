@@ -14,6 +14,10 @@ made by:
   - Encapsulates game creation, allowing for easy expansion with more game types in the future.
 
 2. Singleton (A):
+<br> Implemented in `backend/patterns/Singleton.java` to ensure a single instance of the random number generator is used throughout the game. 
+<br> Provides a thread-safe implementation with double-checked locking. 
+<br> Used in `GameUI` to generate random target numbers within a specified range.
+<br> The Singleton class encapsulates a Random object to generate numbers, ensuring consistency across the application.
 
 ### Structural Pattern:
 1. Adapter (P):
