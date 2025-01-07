@@ -1,52 +1,36 @@
-package frontend;
-
-import frontend.ConsoleObserver;
-import frontend.GameProgress;
-import backend.patterns.Singleton;
-import backend.patterns.BonusHint;
-import backend.patterns.RangeHintDecorator;
-import backend.patterns.EvenOddHintDecorator;
-import backend.patterns.HighLowHintDecorator;
-
 import java.util.Scanner;
+import frontend.ObserverPattern.*;
 
 public class GameUI {
     private Scanner scanner;
     private int targetNumber;
     private int attemptsLeft;
     private GameProgress gameProgress;
-    private BonusHint hintDecorator;
 
     // Constructor
-    public GameUI(int maxAttempts, int range, BonusHint hintDecorator) {
+    public GameUI(int maxAttempts, int range) {
         scanner = new Scanner(System.in);
-        Singleton rng = Singleton.getInstance();
-        targetNumber = rng.generate(1, range);
+        targetNumber = (int) (Math.random() * range) + 1; // Simple random generator
         attemptsLeft = maxAttempts;
         gameProgress = new GameProgress(maxAttempts);
         gameProgress.addObserver(new ConsoleObserver());
-        this.hintDecorator = hintDecorator;
     }
 
     // Main game loop
     public void play() {
         System.out.println("🎮 Welcome to the Number Guessing Game!");
         System.out.println("Try to guess the number. Good luck!");
-
         while (attemptsLeft > 0) {
             System.out.print("\nEnter your guess: ");
             int guess = getUserInput();
             gameProgress.makeGuess(guess, targetNumber);
-
             if (guess == targetNumber) {
                 System.out.println("🎉 Congratulations! You guessed the number!");
                 break;
             } else {
                 attemptsLeft--;
-                System.out.println("Hint: " + hintDecorator.getHint(guess, targetNumber));
                 System.out.println("Attempts left: " + attemptsLeft);
             }
-
             if (attemptsLeft == 0) {
                 System.out.println("💥 Game Over! The number was: " + targetNumber);
             }
@@ -66,5 +50,22 @@ public class GameUI {
             }
         }
         return guess;
+    }
+
+    // Main method to start the game
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Select difficulty
+        System.out.println("Select Difficulty: Easy, Medium, or Hard");
+        String difficulty = scanner.nextLine();
+
+        int maxAttempts = difficulty.equalsIgnoreCase("Easy") ? 10 :
+                difficulty.equalsIgnoreCase("Medium") ? 7 : 5;
+        int range = difficulty.equalsIgnoreCase("Easy") ? 50 :
+                difficulty.equalsIgnoreCase("Medium") ? 100 : 200;
+
+        GameUI gameUI = new GameUI(maxAttempts, range);
+        gameUI.play();
     }
 }
