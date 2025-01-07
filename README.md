@@ -17,12 +17,14 @@ made by:
 1. Adapter (P):
 
 2. Decorator (A):
-   Implemented within `backend/patterns` with multiple decorators:
-- `RangeHintDecorator`: Provides hints based on proximity to the target.
-- `EvenOddHintDecorator`: Indicates if the guess and target have the same parity.
-- `HighLowHintDecorator`: Provides feedback on whether the guess is too high or too low.
-
-The `GameUI` was updated to integrate decorators dynamically based on user input, ensuring flexibility and extensibility.
+<br> Implemented within `backend/patterns` with the following classes to dynamically add hints to the gameplay:
+- EvenOddHintDecorator: Adds hints about whether the guess and target have the same parity (even/odd).
+- HighLowHintDecorator: Provides hints if the guess is too high or too low.
+- RangeHintDecorator: Indicates if the guess is far or close to the target.
+<br>
+<br> All decorators implement the BonusHint interface, ensuring consistency.
+<br> Decorators can be combined, enabling flexible and layered hint systems.
+<br> Used in `GameUI` to allow players to select different types of hints, dynamically applying the chosen decorator to generate enhanced feedback during gameplay.
 
 ### Behavioural Pattern:
 1. Strategy (P):
