@@ -1,4 +1,8 @@
 # Console-Based Number Guessing Game
+**Check the Wiki for extra documentation related to branches workflow or an extended instalation guide.**
+<br>
+<br>
+The **Console-Based Number Guessing Game** is a text-based game where users try to guess a randomly generated number. It features multiple difficulty levels (**Easy**, **Medium**, **Hard**) and dynamic hint strategies to enhance gameplay. The design utilizes various software design patterns to ensure modularity and flexibility.
 
 **Made by:**  
 (A) Alexandra Smirnova - smir0002@hz.nl  
@@ -57,3 +61,52 @@
    - `GameProgress` extends `Subject` to track attempts and notify observers about game events (correct guess, wrong guess, or game over).
    - `ConsoleObserver` implements `Observer` to display notifications in the console.
 - **Benefits:** Provides real-time updates and improves user feedback during gameplay.
+
+---
+
+## Instalation guide
+
+## 1. Compiling Your Java Project
+To compile your Java project, navigate to the root of your project and run the following command:
+
+```bash
+javac -d out -sourcepath src src/Main.java
+```
+
+This will compile your `Main.java` file and place the compiled `.class` files in the `out` directory.
+
+## 2. Running Your Java Project
+To run your Java project, use the following command:
+
+```bash
+java -cp out src.Main
+```
+
+This will run the `Main` class located in the `src` package from the compiled `out` directory.
+
+---
+## Working Together
+
+### Meeting 1: Initial Planning
+
+- **Date**: 18th of December 2024 
+- **Topics Discussed**:  
+  - Discussing the idea of the project.  
+  - Division of tasks and design patterns.  
+  - Setting up repository and branch workflow. 
+
+### Meeting 2: Review 1
+
+- **Date**: 6th of January 2025  
+- **Topics Discussed**:  
+  - Progress updates on design patterns.  
+  - Merging session and hotfixes.
+  - Documentation discussion.
+
+### Meeting 3: Review 2
+
+- **Date**: 7th of January 2025  
+- **Topics Discussed**:  
+  - Review of completed features.  
+  - Feedback on each other's work. 
+  - Complete merge of the full project.
